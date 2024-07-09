@@ -23,13 +23,15 @@ public class JwtValidation {
             String[] chunks = token.split("\\.");
 
             String payload = new String(decoder.decode(chunks[1]));
-            //LOG.info("PAYLOAD: " + payload);
+            LOG.info("PAYLOAD: " + payload);
 
             JwtPayload jwtPayload = mapper.readValue(payload, JwtPayload.class);
 
-           // LOG.info("PAYLOAD MAPPERS: " + jwtPayload.toString());
-            return validadeClaimsName(jwtPayload) && validateClaimNameIsNotNumeric(jwtPayload)
-                    && validateClaimRoleNames(jwtPayload) && validadeMaxClaimNameChars(jwtPayload)
+            LOG.info("PAYLOAD MAPPERS: " + jwtPayload.toString());
+            return validadeClaimsName(jwtPayload)
+                    && validateClaimNameIsNotNumeric(jwtPayload)
+                    && validateClaimRoleNames(jwtPayload)
+                    && validadeMaxClaimNameChars(jwtPayload)
                     && validadeSeedValue(jwtPayload);
         } catch (Exception exception) {
             return false;
@@ -38,7 +40,8 @@ public class JwtValidation {
 
     private boolean validadeClaimsName(JwtPayload jwtPayload) {
         Collection<String> keys = Set.of("Role", "Seed", "Name");
-        return jwtPayload.getDetails().keySet().containsAll(keys);
+        LOG.info(jwtPayload.getDetails().keySet().containsAll(keys));
+        return keys.containsAll(jwtPayload.getDetails().keySet());
     }
 
     private boolean validateClaimNameIsNotNumeric(JwtPayload jwtPayload) {
