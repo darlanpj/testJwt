@@ -10,7 +10,7 @@ ou
 java -jar path/to/your/jarfile.jar TestJWT-0.0.1-SNAPSHOT.jar
 ```
 
-Depoois com alguma aplicação de chamada de API:
+Depois com alguma aplicação de chamada de API:
 
 ```shell
 curl --location 'http://localhost:8090/validation/token' \
