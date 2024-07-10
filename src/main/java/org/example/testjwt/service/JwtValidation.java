@@ -4,32 +4,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.example.testjwt.domain.JwtPayload;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Set;
 
-@Component
+@Service
 public class JwtValidation {
 
-    private ObjectMapper mapper = new ObjectMapper();
-    private static final Log LOG = LogFactory.getLog(JwtValidation.class);
 
+    private static final Log LOG = LogFactory.getLog(JwtValidation.class);
+    private Base64.Decoder decoder = Base64.getUrlDecoder();
     public boolean validateJwtToken(String token) {
 
         try{
-            Base64.Decoder decoder = Base64.getUrlDecoder();
+
             String[] chunks = token.split("\\.");
 
             String payload = new String(decoder.decode(chunks[1]));
-            LOG.info("PAYLOAD: " + payload);
-
+            //LOG.info("PAYLOAD: " + payload);
+            ObjectMapper mapper = new ObjectMapper();
             JwtPayload jwtPayload = mapper.readValue(payload, JwtPayload.class);
 
             LOG.info("PAYLOAD MAPPERS: " + jwtPayload.toString());
+
             return validadeClaimsName(jwtPayload)
-                    && validateClaimNameIsNotNumeric(jwtPayload)
+                    && validateClaimNameIsNumeric(jwtPayload)
                     && validateClaimRoleNames(jwtPayload)
                     && validadeMaxClaimNameChars(jwtPayload)
                     && validadeSeedValue(jwtPayload);
@@ -40,11 +41,11 @@ public class JwtValidation {
 
     private boolean validadeClaimsName(JwtPayload jwtPayload) {
         Collection<String> keys = Set.of("Role", "Seed", "Name");
-        LOG.info(jwtPayload.getDetails().keySet().containsAll(keys));
+       // LOG.info(jwtPayload.getDetails().keySet().containsAll(keys));
         return keys.containsAll(jwtPayload.getDetails().keySet());
     }
 
-    private boolean validateClaimNameIsNotNumeric(JwtPayload jwtPayload) {
+    private boolean validateClaimNameIsNumeric(JwtPayload jwtPayload) {
         return !jwtPayload.getDetails().get("Name").toString().chars().anyMatch(Character::isDigit);
     }
     private boolean validateClaimRoleNames(JwtPayload jwtPayload) {

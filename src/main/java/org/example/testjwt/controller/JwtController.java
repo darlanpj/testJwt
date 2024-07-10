@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/validation")
 @RestController
+@RequestMapping("/validation")
 public class JwtController {
 
     private static Log log = LogFactory.getLog(JwtController.class);
@@ -21,8 +21,6 @@ public class JwtController {
 
     @PostMapping("/token")
     public Boolean validateJwtToken(@RequestBody Token token) {
-
-
      return jwtValidation.validateJwtToken(token.getToken());
     }
 }
