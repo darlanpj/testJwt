@@ -1,33 +1,32 @@
 package org.example.testjwt.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.example.testjwt.domain.JwtPayload;
 import org.springframework.stereotype.Service;
 
-import java.util.Base64;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class JwtValidation {
 
-
     private static final Log LOG = LogFactory.getLog(JwtValidation.class);
-    private Base64.Decoder decoder = Base64.getUrlDecoder();
     public boolean validateJwtToken(String token) {
 
         try{
 
-            String[] chunks = token.split("\\.");
+            DecodedJWT decodedJWT = JWT.decode(token);
+            JwtPayload jwtPayload = new JwtPayload();
 
-            String payload = new String(decoder.decode(chunks[1]));
-            //LOG.info("PAYLOAD: " + payload);
-            ObjectMapper mapper = new ObjectMapper();
-            JwtPayload jwtPayload = mapper.readValue(payload, JwtPayload.class);
+            jwtPayload.setDetails(decodedJWT.getClaims().entrySet().stream()
+                    .collect(Collectors.toMap(Map.Entry::getKey , e-> e.getValue().asString())));
 
-            LOG.info("PAYLOAD MAPPERS: " + jwtPayload.toString());
+            LOG.debug("PAYLOAD: " + jwtPayload);
 
             return validadeClaimsName(jwtPayload)
                     && validateClaimNameIsNumeric(jwtPayload)
@@ -41,7 +40,6 @@ public class JwtValidation {
 
     private boolean validadeClaimsName(JwtPayload jwtPayload) {
         Collection<String> keys = Set.of("Role", "Seed", "Name");
-       // LOG.info(jwtPayload.getDetails().keySet().containsAll(keys));
         return keys.containsAll(jwtPayload.getDetails().keySet());
     }
 
