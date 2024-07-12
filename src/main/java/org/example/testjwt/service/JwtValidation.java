@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.example.testjwt.domain.JwtPayload;
+import org.example.testjwt.model.JwtPayload;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
