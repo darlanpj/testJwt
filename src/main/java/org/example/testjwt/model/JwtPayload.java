@@ -1,4 +1,4 @@
-package org.example.testjwt.domain;
+package org.example.testjwt.model;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import lombok.AllArgsConstructor;
