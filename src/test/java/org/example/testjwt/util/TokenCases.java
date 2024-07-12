@@ -1,6 +1,6 @@
 package org.example.testjwt.util;
 
-public final class TokenCases {
+public class TokenCases {
 
     //Jwt validation ok
     public static final String TOKEN_CASE_1 = "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJTZWVkIjoiNzg0MSIsIk5hbWUiOiJUb25pbmhvIEFyYXVqbyJ9.QY05sIjtrcJnP533kQNk8QXcaleJ1Q01jWY_ZzIZuAg";
