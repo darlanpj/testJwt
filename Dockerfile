@@ -1,4 +1,10 @@
-FROM openjdk:8-jdk-alpine
-COPY target/*.jar app.jar
+FROM openjdk:17-oracle
+
+MAINTAINER darlanpj@gmail.com
+
+COPY target/jwt-validation-0.0.1.jar jwt-validation-0.0.1.jar
+
 EXPOSE 8080
-CMD java -XX:+PrintFlagsFinal -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+
+ENTRYPOINT ["java","-jar","/jwt-validation-0.0.1.jar"]
+
