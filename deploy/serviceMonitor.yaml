@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jwt-validation
+  labels:
+    app: jwt-validation
+    release: my-release
+spec:
+  selector:
+    matchLabels:
+      app: jwt-validation
+  namespaceSelector:
+    any: true
+  endpoints:
+    - port: web
+      path: /actuator/prometheus
+      interval: 10s

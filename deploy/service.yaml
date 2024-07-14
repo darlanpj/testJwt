@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: jwt-validation
+  labels:
+    app: jwt-validation
+spec:
+  selector:
+    app: jwt-validation
+  ports:
+    - name: web
+      port: 8080

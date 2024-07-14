@@ -19,3 +19,7 @@ curl --location 'http://localhost:8090/validation/token' \
     "token":"eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJTZWVkIjoiNzg0MSIsIk5hbWUiOiJUb25pbmhvIEFyYXVqbyJ9.QY05sIjtrcJnP533kQNk8QXcaleJ1Q01jWY_ZzIZuAg"
 }'
 ```
+
+
+Cobertura de tests:
+![Screenshot from 2024-07-12 00-45-51.png](..%2F..%2FPictures%2FScreenshots%2FScreenshot%20from%202024-07-12%2000-45-51.png)

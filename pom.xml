@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.example</groupId>
-	<artifactId>TestJWT</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>TestJWT</name>
+	<artifactId>jwt-validation</artifactId>
+	<version>0.0.1</version>
+	<name>jwt-validation</name>
 	<description>Test validating jwt token</description>
 	<url/>
 	<licenses>
@@ -33,6 +33,16 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
 
 		<dependency>

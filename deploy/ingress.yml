@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jwt-validation-ingress
+spec:
+  rules:
+    - host: api.jwt-validation.tk
+      http:
+        paths:
+          - backend:
+              serviceName: jwt-validation
+              servicePort: 8080
