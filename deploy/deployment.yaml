@@ -18,6 +18,7 @@ spec:
       containers:
         - name: jwt-validation
           image: djambersi/jwt-validation:0.0.1
+          imagePullPolicy: Never
           resources:
             limits:
               memory: "512M"

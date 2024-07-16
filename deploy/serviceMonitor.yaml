@@ -4,11 +4,11 @@ metadata:
   name: jwt-validation
   labels:
     app: jwt-validation
-    release: my-release
+    release: prometheus
 spec:
   selector:
     matchLabels:
-      app: jwt-validation
+      app: prometheus
   namespaceSelector:
     any: true
   endpoints:
