@@ -5,6 +5,10 @@ spring:
   application:
     name: jwt-validator
 
+springdoc:
+  api-docs:
+    path=/api-docs: /api-docs
+
 #prometeus
 management:
   endpoints:
@@ -20,3 +24,5 @@ management:
     metrics:
       export:
         enabled: true
+
+
