@@ -13,6 +13,9 @@ ou
 java -jar path/to/your/jarfile.jar jwt-validation-0.0.1.jar
 ```
 
+Swagger
+http://localhost:8080/swagger-ui/index.html
+
 Docker
 
 ```shell
